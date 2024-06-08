@@ -11,12 +11,17 @@ const {
 
 // Rotte di /posts
 
-console.log("entrato rotte /posts")
+const validator = require('../middlewares/validator.js');
+const { postData } = require('../validations/posts.js')
+const { slugCheck } = require('../validations/generics.js')
 
-router.post('/', store);
+router.post('/', validator(postData), store);
 router.get('/', index);
+
+router.use('/:slug', validator(slugCheck))
+
 router.get('/:slug', show);
-router.put('/:slug', update);
+router.put('/:slug', validator(postData), update);
 router.delete('/:slug', destroy)
 
 module.exports = router;
