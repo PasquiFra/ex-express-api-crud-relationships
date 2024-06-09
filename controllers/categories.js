@@ -85,7 +85,7 @@ const destroy = async (req, res) => {
         // setto l'id da aggiornare
         const catId = category[0].id
 
-        await prisma.post.delete({ where: { id: catId } })
+        await prisma.category.delete({ where: { id: catId } })
         res.json(`Categoria con id ${catId} eliminata con successo.`);
     }
     catch {
