@@ -55,7 +55,6 @@ const postData = {
                 return true;
             }
         }
-
     }
 }
 

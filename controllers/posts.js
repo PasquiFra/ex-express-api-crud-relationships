@@ -23,6 +23,12 @@ const store = async (req, res) => {
     console.log(data)
 
     try {
+        const checkSlug = await prisma.post.findUnique({
+            where: { slug: slug }
+        });
+        if (checkSlug) {
+            throw new Error(`Esiste già un post con slug ${slug}`)
+        }
         const post = await prisma.post.create({ data })
         res.status(200).send(post);
     } catch (err) {
