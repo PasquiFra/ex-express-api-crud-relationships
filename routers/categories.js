@@ -8,13 +8,18 @@ const {
     destroy
 } = require('../controllers/categories.js');
 
-console.log("entrato rotte /categories")
 
-router.post('/', store);
+const validator = require('../middlewares/validator.js');
+const { categoryData } = require('../validations/categories.js')
+const { categoryName } = require('../validations/generics.js')
+
+router.post('/', validator(categoryData), store);
 router.get('/', index);
 
+router.use('/:name', validator(categoryName))
+
 router.get('/:name', show);
-router.put('/:name', update);
+router.put('/:name', validator(categoryData), update);
 router.delete('/:name', destroy);
 
 

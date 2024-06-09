@@ -5,7 +5,7 @@ const postData = {
     title: {
         in: ['body'],
         isString: {
-            errorMessage: "ID dev'essere un numerolo slug dev\'essere una stringa",
+            errorMessage: "Il titolo dev\'essere una stringa",
             bail: true
         },
         notEmpty: {

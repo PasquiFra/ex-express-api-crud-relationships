@@ -8,13 +8,17 @@ const {
     destroy
 } = require("../controllers/tags.js");
 
-console.log("entrato rotte /tags")
+const validator = require('../middlewares/validator.js');
+const { tagData } = require('../validations/tags.js')
+const { tagName } = require('../validations/generics.js')
 
-router.post('/', store);
+router.post('/', validator(tagData), store);
 router.get('/', index);
 
+router.use('/:name', validator(tagName))
+
 router.get('/:name', show);
-router.put('/:name', update);
+router.put('/:name', validator(tagData), update);
 router.delete('/:name', destroy);
 
 module.exports = router;
